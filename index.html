@@ -15,14 +15,16 @@
     --mute: #6b6b6b;
     --rule: #e5e5e5;
 
-    --intro-bg: #E63946;          /* red placeholder for intro video */
-
-    --parallax-speed: 0.22;
     --pad-x: clamp(24px, 6vw, 80px);
     --pad-top: clamp(60px, 9vh, 110px);
     --pad-bot: clamp(80px, 12vh, 140px);
 
     --font-sans: 'Helvetica Neue', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+
+    --intro-c1: #ff5f6d;
+    --intro-c2: #e63946;
+    --intro-c3: #8f2d56;
+    --intro-c4: #3a0f42;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -45,7 +47,22 @@
   }
 
   /* ==========================================================
-     INTRO — wraps hero + about, has red video placeholder behind
+     SHARED FLUID GRADIENT
+     ========================================================== */
+  @keyframes fluidGradient {
+    0% {
+      background-position: 0% 50%, 100% 50%, 50% 0%;
+    }
+    50% {
+      background-position: 100% 50%, 0% 50%, 50% 100%;
+    }
+    100% {
+      background-position: 0% 50%, 100% 50%, 50% 0%;
+    }
+  }
+
+  /* ==========================================================
+     INTRO — wraps hero + about, has animated gradient behind
      ========================================================== */
   .intro {
     position: relative;
@@ -55,11 +72,24 @@
   .intro-media {
     position: absolute;
     inset: 0;
-    background: var(--intro-bg);
     z-index: 0;
+    background:
+      radial-gradient(80% 80% at 15% 25%, rgba(255,255,255,0.14), transparent 55%),
+      radial-gradient(70% 70% at 85% 35%, rgba(255,255,255,0.10), transparent 52%),
+      linear-gradient(135deg, var(--intro-c1), var(--intro-c2), var(--intro-c3), var(--intro-c4));
+    background-size: 140% 140%, 160% 160%, 300% 300%;
+    background-position: 0% 50%, 100% 50%, 50% 50%;
+    animation: fluidGradient 18s ease-in-out infinite;
   }
-  video.intro-media,
-  img.intro-media { object-fit: cover; width: 100%; height: 100%; }
+
+  .intro-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(0,0,0,0.06), rgba(0,0,0,0.16));
+    pointer-events: none;
+  }
 
   /* ==========================================================
      HERO
@@ -73,6 +103,7 @@
     justify-content: space-between;
     z-index: 1;
     --band: #000;
+    --band-highlight: rgba(255,255,255,0.12);
     color: #ffffff;
   }
 
@@ -289,25 +320,24 @@
     clip-path: polygon(-2% 22%, 102% 11%, 102% 51%, -2% 62%);
   }
 
-  /* Make the app-section bands wider/taller */
   .section .band-clip {
-    clip-path: polygon(-2% 14%, 102% 2%, 102% 62%, -2% 74%);
+    clip-path: polygon(-2% 14%, 102% 2%, 102% 55%, -2% 65%);
   }
 
   .band-media {
     position: absolute;
-    left: -5%;
-    right: -5%;
-    top: -40%;
-    bottom: -40%;
-    background: var(--band);
-    will-change: transform;
+    left: -8%;
+    right: -8%;
+    top: -20%;
+    bottom: -20%;
     z-index: 1;
-  }
-  video.band-media {
-    object-fit: cover;
-    width: 110%;
-    height: 180%;
+    background:
+      radial-gradient(70% 90% at 15% 50%, var(--band-highlight), transparent 60%),
+      radial-gradient(80% 100% at 85% 50%, rgba(255,255,255,0.08), transparent 60%),
+      linear-gradient(135deg, color-mix(in srgb, var(--band) 85%, white 10%), var(--band), color-mix(in srgb, var(--band) 72%, black 18%));
+    background-size: 160% 160%, 180% 180%, 300% 300%;
+    background-position: 0% 50%, 100% 50%, 50% 50%;
+    animation: fluidGradient 16s ease-in-out infinite;
   }
 
   .band-clip .text-block {
@@ -324,9 +354,20 @@
   /* ==========================================================
      PER-APP ACCENTS
      ========================================================== */
-  .section--openmusic { --band: #BA3CE8; }
-  .section--unisports { --band: #18C47C; }
-  .section--carpass   { --band: #2D6CF5; }
+  .section--openmusic {
+    --band: #BA3CE8;
+    --band-highlight: rgba(255,255,255,0.15);
+  }
+
+  .section--unisports {
+    --band: #18C47C;
+    --band-highlight: rgba(255,255,255,0.12);
+  }
+
+  .section--carpass {
+    --band: #2D6CF5;
+    --band-highlight: rgba(255,255,255,0.12);
+  }
 
   /* ==========================================================
      FOOTER
@@ -367,7 +408,12 @@
      MOTION / A11Y
      ========================================================== */
   @media (prefers-reduced-motion: reduce) {
-    /* .band-media { transform: none !important; } */
+    .intro-media,
+    .band-media {
+      animation: none;
+      background-position: 50% 50%, 50% 50%, 50% 50%;
+    }
+
     html { scroll-behavior: auto; }
   }
 </style>
@@ -375,9 +421,7 @@
 <body>
 
   <div class="intro">
-    <video class="intro-media" autoplay muted loop playsinline>
-      <source src="assets/title.webm" type="video/webm">
-    </video>
+    <div class="intro-media" aria-hidden="true"></div>
 
     <section class="hero" data-parallax-section data-angle="hero">
       <div class="hero__top">
@@ -394,7 +438,7 @@
       </div>
 
       <div class="band-clip" aria-hidden="true">
-        <div class="band-media" data-parallax-band></div>
+        <div class="band-media"></div>
         <div class="hero hero--mirror">
           <div class="hero__top">
             <span>Charlie Giannis — Portfolio 2026</span>
@@ -403,7 +447,7 @@
           <h1 class="hero__name">Charlie<br>Giannis<span class="stop">.</span></h1>
           <div class="hero__bottom">
             <p class="hero__tagline">
-              Independent designer and engineer. I build small, opinionated apps — native where it matters, open source where it helps, and stubbornly respectful of the people who use them.
+              Honours Bachelors of Science at the University of Toronto.
             </p>
           </div>
         </div>
@@ -422,7 +466,7 @@
           Since I was a kid building games in Scratch, I knew coding was what I wanted to do with my life.
           My first app was a highschool side project; a free music streaming platform called Openmusic. The goal was music sharing in a user-friendly, high quality app. I succeeded, and now serve 3500+ users.
           <br>
-          Since then I've been obsessed with building apps that feel good to use. I focus on the small UI/UX details that turn something functional into something usable. 
+          Since then I've been obsessed with building apps that feel good to use. I focus on the small UI/UX details that turn something functional into something usable.
         </p>
       </div>
     </section>
@@ -446,9 +490,7 @@
     </div>
 
     <div class="band-clip" aria-hidden="true">
-      <video class="band-media" autoplay muted loop playsinline data-parallax-band>
-        <source src="assets/openmusic.mp4" type="video/webm">
-      </video>
+      <div class="band-media"></div>
       <div class="text-block">
         <div class="text-block__content text-block__content--align-end">
           <h2 class="text-block__title">Openmusic</h2>
@@ -472,7 +514,7 @@
     </div>
 
     <div class="band-clip" aria-hidden="true">
-      <div class="band-media" data-parallax-band></div>
+      <div class="band-media"></div>
       <div class="text-block">
         <div class="text-block__content">
           <h2 class="text-block__title">UniSports</h2>
@@ -496,7 +538,7 @@
     </div>
 
     <div class="band-clip" aria-hidden="true">
-      <div class="band-media" data-parallax-band></div>
+      <div class="band-media"></div>
       <div class="text-block">
         <div class="text-block__content text-block__content--align-end">
           <h2 class="text-block__title">CarPass</h2>
@@ -521,22 +563,17 @@
 <script>
 (function () {
   const ROOT = document.documentElement;
-  const speed = parseFloat(
-    getComputedStyle(ROOT).getPropertyValue('--parallax-speed')
-  ) || 0.22;
+  const speed = 0.22;
 
   /*
     Single control for the bottom edge of ALL app-section bands.
     - Increase to push the bottom edge downward
     - Decrease to pull it upward
-
-    95 is a good default based on your current shapes.
   */
-  const APP_BOTTOM_EDGE = 95;
+  const APP_BOTTOM_EDGE = 65;
 
   /*
     These control how much tilt each band has.
-    Keep these if you still want the same diagonal feel.
   */
   const APP_TOP_A_LEFT = 24;
   const APP_TOP_A_RIGHT = 12;
@@ -544,7 +581,7 @@
   const APP_TOP_B_LEFT = 12;
   const APP_TOP_B_RIGHT = 24;
 
-  const APP_BOTTOM_TILT = 10; // difference between left/right bottom corners
+  const APP_BOTTOM_TILT = 10;
 
   const ANGLES = {
     a: [
@@ -573,8 +610,7 @@
   const state = Array.from(sections).map(sec => ({
     section: sec,
     angle: sec.dataset.angle,
-    clip: sec.querySelector('.band-clip'),
-    media: sec.querySelector('[data-parallax-band]')
+    clip: sec.querySelector('.band-clip')
   }));
 
   let ticking = false;
@@ -600,11 +636,6 @@
       const clipStr = `polygon(${pts})`;
       s.clip.style.clipPath = clipStr;
       s.clip.style.webkitClipPath = clipStr;
-
-      if (s.media) {
-        const mediaShift = diff * speed * 0.5;
-        s.media.style.transform = `translate3d(0, ${mediaShift.toFixed(2)}px, 0)`;
-      }
     }
 
     ticking = false;
