@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charlie Giannis — Portfolio</title>
+<style>
+  /* ==========================================================
+     TOKENS
+     ========================================================== */
+  :root {
+    --bg: #ffffff;
+    --fg: #000000;
+    --fg-invert: #ffffff;
+    --mute: #6b6b6b;
+    --rule: #e5e5e5;
+
+    --intro-bg: #E63946;          /* red placeholder for intro video */
+
+    --parallax-speed: 0.22;
+    --pad-x: clamp(24px, 6vw, 80px);
+    --pad-top: clamp(60px, 9vh, 110px);
+    --pad-bot: clamp(80px, 12vh, 140px);
+
+    --font-sans: 'Helvetica Neue', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--fg);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* ==========================================================
+     INTRO — wraps hero + about, has red video placeholder behind
+     ========================================================== */
+  .intro {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .intro-media {
+    position: absolute;
+    inset: 0;
+    background: var(--intro-bg);
+    z-index: 0;
+  }
+  video.intro-media,
+  img.intro-media { object-fit: cover; width: 100%; height: 100%; }
+
+  /* ==========================================================
+     HERO
+     ========================================================== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    padding: var(--pad-top) var(--pad-x) var(--pad-bot);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1;
+    --band: #000;
+    color: #ffffff;
+  }
+
+  .hero__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+
+  .hero__top span:first-child::before {
+    content: "";
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: #ffffff;
+    border-radius: 50%;
+    margin-right: 10px;
+    transform: translateY(-1px);
+  }
+
+  .hero__name {
+    font-weight: 900;
+    font-size: clamp(80px, 18vw, 320px);
+    line-height: 0.82;
+    letter-spacing: -0.06em;
+    margin: clamp(40px, 8vh, 80px) 0;
+    color: #000;
+  }
+
+  .hero__name .stop { color: rgba(255,255,255,0.55); }
+
+  .hero__bottom { max-width: 520px; }
+
+  .hero__tagline {
+    font-size: clamp(15px, 1.3vw, 19px);
+    line-height: 1.4;
+    font-weight: 400;
+    color: #ffffff;
+  }
+
+  .hero--mirror {
+    position: absolute;
+    inset: 0;
+    padding: var(--pad-top) var(--pad-x) var(--pad-bot);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none;
+    min-height: auto;
+  }
+  .hero--mirror .hero__top,
+  .hero--mirror .hero__bottom { visibility: hidden; }
+  .hero--mirror .hero__name { color: #ffffff; }
+  .hero--mirror .hero__name .stop { color: rgba(0,0,0,0.35); }
+
+  /* ==========================================================
+     ABOUT
+     ========================================================== */
+  .about {
+    position: relative;
+    z-index: 1;
+    padding: clamp(120px, 18vh, 200px) var(--pad-x);
+  }
+
+  .about__body { max-width: 880px; }
+
+  .about__lede {
+    font-weight: 500;
+    font-size: clamp(26px, 3.4vw, 50px);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin-bottom: clamp(40px, 6vh, 72px);
+    color: #ffffff;
+  }
+
+  .about__lede em {
+    font-style: italic;
+    color: rgba(255,255,255,0.55);
+    font-weight: 400;
+  }
+
+  .about__text {
+    font-size: clamp(15px, 1.15vw, 17px);
+    line-height: 1.55;
+    max-width: 560px;
+    color: rgba(255,255,255,0.88);
+    margin-bottom: 20px;
+  }
+
+  /* ==========================================================
+     PROJECTS LABEL
+     ========================================================== */
+  .projects-intro {
+    padding: clamp(28px, 5vh, 56px) var(--pad-x);
+    border-top: 1px solid var(--rule);
+    background: var(--bg);
+  }
+
+  .projects-intro__label {
+    font-size: clamp(18px, 2.2vw, 28px);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg);
+    text-align: center;
+  }
+
+  /* ==========================================================
+     PROJECT SECTION LAYOUT
+     ========================================================== */
+  .section {
+    position: relative;
+    min-height: 82vh;
+    padding: clamp(44px, 7vh, 80px) var(--pad-x) clamp(56px, 8vh, 96px);
+    overflow: hidden;
+    isolation: isolate;
+    border-top: 1px solid var(--rule);
+  }
+
+  .section__link {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+  }
+
+  .section__link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -8px;
+  }
+
+  .section__index {
+    position: absolute;
+    top: 32px;
+    left: var(--pad-x);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    z-index: 3;
+    mix-blend-mode: difference;
+    pointer-events: none;
+  }
+  .section__index b { font-weight: 500; margin-right: 20px; }
+
+  .section--right .section__index {
+    left: auto;
+    right: var(--pad-x);
+    text-align: right;
+  }
+
+  /* ==========================================================
+     TEXT BLOCK
+     ========================================================== */
+  .text-block {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(82vh - clamp(44px, 7vh, 80px) - clamp(56px, 8vh, 96px));
+    pointer-events: none;
+  }
+
+  .text-block__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.14em;
+  }
+
+  .text-block__content--align-end {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .text-block__content--align-end .text-block__sub {
+    text-align: right;
+    max-width: 30ch;
+  }
+
+  .text-block__title {
+    font-weight: 900;
+    font-size: clamp(64px, 13vw, 220px);
+    line-height: 0.86;
+    letter-spacing: -0.055em;
+    color: inherit;
+  }
+
+  .text-block__sub {
+    font-weight: 700;
+    font-size: clamp(13px, 1.15vw, 17px);
+    letter-spacing: -0.005em;
+    color: inherit;
+    max-width: 520px;
+  }
+
+  .section--right .text-block { align-items: flex-end; text-align: right; }
+  .section--left .text-block { align-items: flex-start; text-align: left; }
+  .section--right .text-block__sub { margin-left: auto; }
+
+  /* ==========================================================
+     BAND
+     ========================================================== */
+  .band-clip {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    clip-path: polygon(-2% 22%, 102% 11%, 102% 51%, -2% 62%);
+  }
+
+  /* Make the app-section bands wider/taller */
+  .section .band-clip {
+    clip-path: polygon(-2% 14%, 102% 2%, 102% 62%, -2% 74%);
+  }
+
+  .band-media {
+    position: absolute;
+    left: -5%;
+    right: -5%;
+    top: -40%;
+    bottom: -40%;
+    background: var(--band);
+    will-change: transform;
+    z-index: 1;
+  }
+  video.band-media {
+    object-fit: cover;
+    width: 110%;
+    height: 180%;
+  }
+
+  .band-clip .text-block {
+    position: absolute;
+    inset: 0;
+    padding: clamp(44px, 7vh, 80px) var(--pad-x) clamp(56px, 8vh, 96px);
+    color: var(--fg-invert);
+    z-index: 2;
+  }
+  .section--right .band-clip .text-block { align-items: flex-end; text-align: right; }
+  .section--left .band-clip .text-block { align-items: flex-start; text-align: left; }
+  .section--right .band-clip .text-block__sub { margin-left: auto; }
+
+  /* ==========================================================
+     PER-APP ACCENTS
+     ========================================================== */
+  .section--openmusic { --band: #BA3CE8; }
+  .section--unisports { --band: #18C47C; }
+  .section--carpass   { --band: #2D6CF5; }
+
+  /* ==========================================================
+     FOOTER
+     ========================================================== */
+  .footer {
+    padding: clamp(28px, 5vh, 56px) var(--pad-x);
+    border-top: 1px solid var(--rule);
+    background: var(--bg);
+  }
+
+  .footer__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer__contact,
+  .footer__location {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--fg);
+  }
+
+  .footer__contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 20px;
+  }
+
+  .footer__contact span,
+  .footer__location span {
+    white-space: nowrap;
+  }
+
+  /* ==========================================================
+     MOTION / A11Y
+     ========================================================== */
+  @media (prefers-reduced-motion: reduce) {
+    /* .band-media { transform: none !important; } */
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="intro">
+    <video class="intro-media" autoplay muted loop playsinline>
+      <source src="assets/title.webm" type="video/webm">
+    </video>
+
+    <section class="hero" data-parallax-section data-angle="hero">
+      <div class="hero__top">
+        <span>Charlie Giannis — Portfolio 2026</span>
+        <span>Toronto · Remote</span>
+      </div>
+
+      <h1 class="hero__name">Charlie<br>Giannis<span class="stop">.</span></h1>
+
+      <div class="hero__bottom">
+        <p class="hero__tagline">
+          Honours Bachelors of Science at the University of Toronto.
+        </p>
+      </div>
+
+      <div class="band-clip" aria-hidden="true">
+        <div class="band-media" data-parallax-band></div>
+        <div class="hero hero--mirror">
+          <div class="hero__top">
+            <span>Charlie Giannis — Portfolio 2026</span>
+            <span>Toronto · Remote</span>
+          </div>
+          <h1 class="hero__name">Charlie<br>Giannis<span class="stop">.</span></h1>
+          <div class="hero__bottom">
+            <p class="hero__tagline">
+              Independent designer and engineer. I build small, opinionated apps — native where it matters, open source where it helps, and stubbornly respectful of the people who use them.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="about__body">
+        <h2 class="about__lede">
+          I make products that are fluid, usable, and <em>genuinely enjoyable.</em>
+        </h2>
+        <p class="about__text">
+          I'm Charlie, a full-stack web and iOS developer. I graduated in 2026 with an Honours Bachelors of Science, and did an iOS SE internship at Rakuten Rewards.
+        </p>
+        <p class="about__text">
+          Since I was a kid building games in Scratch, I knew coding was what I wanted to do with my life.
+          My first app was a highschool side project; a free music streaming platform called Openmusic. The goal was music sharing in a user-friendly, high quality app. I succeeded, and now serve 3500+ users.
+          <br>
+          Since then I've been obsessed with building apps that feel good to use. I focus on the small UI/UX details that turn something functional into something usable. 
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <section class="projects-intro" aria-label="Projects introduction">
+    <p class="projects-intro__label">MY PROJECTS</p>
+  </section>
+
+  <section class="section section--openmusic section--left"
+           data-parallax-section data-angle="a">
+    <a class="section__link" href="/openmusic" aria-label="Open Openmusic project"></a>
+
+    <span class="section__index"><b>01</b>Openmusic — 2024→</span>
+
+    <div class="text-block">
+      <div class="text-block__content text-block__content--align-end">
+        <h2 class="text-block__title">Openmusic</h2>
+        <p class="text-block__sub">Free, open source music streaming.</p>
+      </div>
+    </div>
+
+    <div class="band-clip" aria-hidden="true">
+      <video class="band-media" autoplay muted loop playsinline data-parallax-band>
+        <source src="assets/openmusic.mp4" type="video/webm">
+      </video>
+      <div class="text-block">
+        <div class="text-block__content text-block__content--align-end">
+          <h2 class="text-block__title">Openmusic</h2>
+          <p class="text-block__sub">Free, open source music streaming.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--unisports section--right"
+           data-parallax-section data-angle="b">
+    <a class="section__link" href="/unisports" aria-label="Open UniSports project"></a>
+
+    <span class="section__index"><b>02</b>UniSports — 2025→</span>
+
+    <div class="text-block">
+      <div class="text-block__content">
+        <h2 class="text-block__title">UniSports</h2>
+        <p class="text-block__sub">Live sports schedule for Ontario universities.</p>
+      </div>
+    </div>
+
+    <div class="band-clip" aria-hidden="true">
+      <div class="band-media" data-parallax-band></div>
+      <div class="text-block">
+        <div class="text-block__content">
+          <h2 class="text-block__title">UniSports</h2>
+          <p class="text-block__sub">Live sports schedule for Ontario universities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--carpass section--left"
+           data-parallax-section data-angle="a">
+    <a class="section__link" href="/carpass" aria-label="Open CarPass project"></a>
+
+    <span class="section__index"><b>03</b>CarPass — 2026→</span>
+
+    <div class="text-block">
+      <div class="text-block__content text-block__content--align-end">
+        <h2 class="text-block__title">CarPass</h2>
+        <p class="text-block__sub">Effortless car schedule For families.</p>
+      </div>
+    </div>
+
+    <div class="band-clip" aria-hidden="true">
+      <div class="band-media" data-parallax-band></div>
+      <div class="text-block">
+        <div class="text-block__content text-block__content--align-end">
+          <h2 class="text-block__title">CarPass</h2>
+          <p class="text-block__sub">Effortless car schedule For families.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__contact">
+        <span>charlie.giannis@mail.utoronto.ca</span>
+        <span>linkedin.com/in/charlie-giannis</span>
+      </div>
+      <div class="footer__location">
+        <span>Canada 🇨🇦</span>
+      </div>
+    </div>
+  </footer>
+
+<script>
+(function () {
+  const ROOT = document.documentElement;
+  const speed = parseFloat(
+    getComputedStyle(ROOT).getPropertyValue('--parallax-speed')
+  ) || 0.22;
+
+  /*
+    Single control for the bottom edge of ALL app-section bands.
+    - Increase to push the bottom edge downward
+    - Decrease to pull it upward
+
+    95 is a good default based on your current shapes.
+  */
+  const APP_BOTTOM_EDGE = 95;
+
+  /*
+    These control how much tilt each band has.
+    Keep these if you still want the same diagonal feel.
+  */
+  const APP_TOP_A_LEFT = 24;
+  const APP_TOP_A_RIGHT = 12;
+
+  const APP_TOP_B_LEFT = 12;
+  const APP_TOP_B_RIGHT = 24;
+
+  const APP_BOTTOM_TILT = 10; // difference between left/right bottom corners
+
+  const ANGLES = {
+    a: [
+      [-2, APP_TOP_A_LEFT],
+      [102, APP_TOP_A_RIGHT],
+      [102, APP_BOTTOM_EDGE - APP_BOTTOM_TILT / 2],
+      [-2, APP_BOTTOM_EDGE + APP_BOTTOM_TILT / 2]
+    ],
+    b: [
+      [-2, APP_TOP_B_LEFT],
+      [102, APP_TOP_B_RIGHT],
+      [102, APP_BOTTOM_EDGE + APP_BOTTOM_TILT / 2],
+      [-2, APP_BOTTOM_EDGE - APP_BOTTOM_TILT / 2]
+    ],
+    hero: [
+      [-2, 36],
+      [102, 25],
+      [102, 65],
+      [-2, 76]
+    ]
+  };
+
+  const sections = document.querySelectorAll('[data-parallax-section]');
+  if (!sections.length) return;
+
+  const state = Array.from(sections).map(sec => ({
+    section: sec,
+    angle: sec.dataset.angle,
+    clip: sec.querySelector('.band-clip'),
+    media: sec.querySelector('[data-parallax-band]')
+  }));
+
+  let ticking = false;
+
+  function update() {
+    const vh = window.innerHeight;
+    const vpCentre = vh / 2;
+
+    for (const s of state) {
+      const rect = s.section.getBoundingClientRect();
+      if (rect.bottom < -vh * 0.5 || rect.top > vh * 1.5) continue;
+
+      const sectionCentre = rect.top + rect.height / 2;
+      const diff = sectionCentre - vpCentre;
+
+      const shiftPct = (-diff / rect.height) * 100 * speed;
+      const basePoints = ANGLES[s.angle] || ANGLES.a;
+
+      const pts = basePoints
+        .map(([x, y]) => `${x}% ${(y - shiftPct).toFixed(2)}%`)
+        .join(', ');
+
+      const clipStr = `polygon(${pts})`;
+      s.clip.style.clipPath = clipStr;
+      s.clip.style.webkitClipPath = clipStr;
+
+      if (s.media) {
+        const mediaShift = diff * speed * 0.5;
+        s.media.style.transform = `translate3d(0, ${mediaShift.toFixed(2)}px, 0)`;
+      }
+    }
+
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion) {
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+  } else {
+    for (const s of state) {
+      const basePoints = ANGLES[s.angle] || ANGLES.a;
+      const pts = basePoints.map(([x, y]) => `${x}% ${y}%`).join(', ');
+      s.clip.style.clipPath = `polygon(${pts})`;
+      s.clip.style.webkitClipPath = `polygon(${pts})`;
+    }
+  }
+})();
+</script>
+
+</body>
+</html>
