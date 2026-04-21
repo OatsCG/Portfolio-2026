@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Openmusic Case Study - Charlie Giannis</title>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    :root {
+      --case-accent-1: #e63946;
+    }
+
+    .case-page {
+      background: var(--bg);
+      color: var(--fg);
+    }
+
+    .case-hero .hero__top {
+      justify-content: flex-start;
+    }
+
+    .hero__name {
+      font-weight: 900;
+      font-size: clamp(64px, 13vw, 220px);
+      line-height: 0.82;
+      letter-spacing: -0.06em;
+      margin: clamp(40px, 8vh, 80px) 0;
+      color: #000;
+    }
+
+    .case-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ffffff;
+      pointer-events: auto;
+    }
+
+    .case-back-link:hover {
+      opacity: 0.7;
+    }
+
+    .case-overview {
+      padding: clamp(44px, 7vh, 72px) var(--pad-x);
+      border-bottom: 1px solid var(--rule);
+      background: #fff;
+    }
+
+    .case-overview__grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1.9fr;
+      gap: clamp(28px, 4vw, 56px);
+      align-items: start;
+    }
+
+    .case-overview__label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+
+    .case-overview__text {
+      max-width: 760px;
+      font-size: clamp(16px, 1.2vw, 19px);
+      line-height: 1.6;
+    }
+
+    .case-content {
+      padding: 0 var(--pad-x) clamp(72px, 10vh, 120px);
+      background: #fff;
+    }
+
+    .case-section {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.95fr) minmax(0, 1.55fr) minmax(220px, 0.95fr);
+      gap: clamp(22px, 3vw, 40px);
+      padding: clamp(38px, 6vh, 64px) 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+    }
+
+    .case-section:last-child {
+      border-bottom: none;
+    }
+
+    .case-section__media {
+      display: grid;
+      gap: 18px;
+    }
+
+    .case-section__media--right {
+      justify-items: end;
+    }
+
+    .case-placeholder {
+      width: 100%;
+      max-width: 340px;
+      min-height: 220px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      background: var(--case-accent-1);
+    }
+
+    .case-section__body {
+      max-width: 760px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .case-section__kicker {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+
+    .case-section__title {
+      font-size: clamp(30px, 4vw, 54px);
+      line-height: 0.96;
+      letter-spacing: -0.045em;
+      font-weight: 800;
+    }
+
+    .case-section__text {
+      font-size: clamp(15px, 1.1vw, 17px);
+      line-height: 1.65;
+      color: #111;
+      max-width: 62ch;
+    }
+
+    .case-section__text p + p {
+      margin-top: 16px;
+    }
+
+    .case-links__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .case-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      border: 1px solid var(--rule);
+      background: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      transition: background 0.15s ease, opacity 0.15s ease;
+    }
+
+    .case-link img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+    }
+
+    .case-link:hover {
+      background: #f3f3f3;
+      opacity: 0.85;
+    }
+
+    .case-links {
+      padding: 0 var(--pad-x) clamp(48px, 8vh, 80px);
+      background: #fff;
+    }
+
+    .case-links__inner {
+      padding-top: clamp(28px, 4vh, 40px);
+      border-top: 1px solid var(--rule);
+      display: grid;
+      gap: 18px;
+    }
+
+    .case-links__label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+
+    @media (max-width: 980px) {
+      .case-overview__grid,
+      .case-section {
+        grid-template-columns: 1fr;
+      }
+
+      .case-section__media,
+      .case-section__media--right {
+        justify-items: start;
+      }
+
+      .case-placeholder {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body class="case-page">
+
+  <div class="intro">
+    <div class="intro-media" aria-hidden="true">
+      <canvas class="intro-canvas" data-liquid data-mode="plain" data-colors="#ed3ea1,#ef0fca,#6c0ed2,#2b0554"></canvas>
+    </div>
+
+    <section class="hero case-hero" data-parallax-section data-angle="hero">
+      <div class="hero__top">
+        <a class="case-back-link" href="index.html">Back to portfolio</a>
+      </div>
+
+      <h2 class="hero__name">Openmusic<br>Case Study</h2>
+
+      <div class="hero__bottom">
+        <p class="hero__tagline">
+          iOS App - Music Streaming Service
+        </p>
+      </div>
+
+      <div class="band-clip" aria-hidden="true">
+        <div class="band-media"></div>
+        <div class="hero hero--mirror">
+          <div class="hero__top">
+            <a class="case-back-link" href="index.html">Back to portfolio</a>
+          </div>
+          <h2 class="hero__name">Openmusic<br>Case Study</h2>
+          <div class="hero__bottom">
+            <p class="hero__tagline">
+              iOS App - Music Streaming Service
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="case-overview">
+    <div class="case-overview__grid">
+      <p class="case-overview__label">Overview</p>
+      <div class="case-overview__text">
+        Add a short overview here that introduces the product, what it does, and why it matters. Keep it direct and
+        simple.
+      </div>
+    </div>
+  </section>
+
+  <main class="case-content">
+    <section class="case-section">
+      <div class="case-section__media">
+        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+      </div>
+
+      <div class="case-section__body">
+        <p class="case-section__kicker">01</p>
+        <h2 class="case-section__title">What is Openmusic?</h2>
+        <div class="case-section__text">
+          <p>
+            Add a straightforward description of the app here. Explain the core purpose, the type of user it serves,
+            and what made the project worth building. Keep it practical and direct.
+          </p>
+          <p>
+            This section works well for a short origin story, product framing, or a brief explanation of the feature
+            set that matters most to the rest of the case study.
+          </p>
+        </div>
+      </div>
+
+      <div class="case-section__media case-section__media--right">
+        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__media">
+        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+      </div>
+
+      <div class="case-section__body">
+        <p class="case-section__kicker">02</p>
+        <h2 class="case-section__title">Aggregating Music and the OMDB</h2>
+        <div class="case-section__text">
+          <p>
+            Describe the specific problem, friction point, or gap this product addresses. Focus on the real user need
+            or workflow issue rather than broad claims.
+          </p>
+          <p>
+            You can also use this area to explain any constraints that shaped the project, such as time, platform,
+            technical limitations, or audience expectations.
+          </p>
+        </div>
+      </div>
+
+      <div class="case-section__media case-section__media--right">
+        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__media">
+        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+      </div>
+
+      <div class="case-section__body">
+        <p class="case-section__kicker">03</p>
+        <h2 class="case-section__title">Design and Themes</h2>
+        <div class="case-section__text">
+          <p>
+            Walk through the design decisions that shaped the app. This could include navigation structure, visual
+            hierarchy, motion, interaction details, or how you balanced clarity with personality.
+          </p>
+          <p>
+            If useful, split this into a couple of paragraphs describing what changed over time and why the final
+            direction felt stronger than earlier ideas.
+          </p>
+        </div>
+      </div>
+
+      <div class="case-section__media case-section__media--right">
+        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__media">
+        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+      </div>
+
+      <div class="case-section__body">
+        <p class="case-section__kicker">04</p>
+        <h2 class="case-section__title">Implementation notes</h2>
+        <div class="case-section__text">
+          <p>
+            Use this section for the technical side of the project. Mention architecture, platform choices, APIs,
+            tricky implementation details, or any engineering work that made the product feel polished.
+          </p>
+          <p>
+            Keep the tone accessible. The page should still read clearly even for someone who is not deeply technical.
+          </p>
+        </div>
+      </div>
+
+      <div class="case-section__media case-section__media--right">
+        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__media">
+        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+      </div>
+
+      <div class="case-section__body">
+        <p class="case-section__kicker">05 / Wrap-up</p>
+        <h2 class="case-section__title">What to say at the end</h2>
+        <div class="case-section__text">
+          <p>
+            Close with a brief summary of what the project became, what you learned, or what you would refine next.
+            Since the page is meant to stay minimal, a concise ending usually works better than a long conclusion.
+          </p>
+          <p>
+            You can also use this final section to set up the links below.
+          </p>
+        </div>
+      </div>
+
+      <div class="case-section__media case-section__media--right">
+        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+      </div>
+    </section>
+  </main>
+
+  <section class="case-links" aria-label="Project links">
+
+  <div class="case-links__inner">
+    <p class="case-links__label">Project links</p>
+
+    <div class="case-links__grid">
+      <a class="case-link" href="#">
+        <img src="assets/appstore.webp" alt="">
+        <span>App Store</span>
+      </a>
+
+      <a class="case-link" href="#">
+        <img src="assets/github.webp" alt="">
+        <span>GitHub – iOS App</span>
+      </a>
+
+      <a class="case-link" href="#">
+        <img src="assets/github.webp" alt="">
+        <span>GitHub – Backend</span>
+      </a>
+
+      <a class="case-link" href="#">
+        <img src="assets/github.webp" alt="">
+        <span>GitHub – Website</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__contact">
+        <span>charlie.giannis@mail.utoronto.ca</span>
+        <span>linkedin.com/in/charlie-giannis</span>
+      </div>
+      <div class="footer__location">
+        <span>Canada 🇨🇦</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="band.js"></script>
+  <script src="liquid.js"></script>
+</body>
+
+</html>
