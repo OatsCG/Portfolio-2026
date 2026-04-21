@@ -228,17 +228,6 @@ a {
     border-top: 1px solid var(--rule);
 }
 
-.section__link {
-    position: absolute;
-    inset: 0;
-    z-index: 4;
-}
-
-.section__link:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: -8px;
-}
-
 .section__index {
     position: absolute;
     top: 32px;
