@@ -132,10 +132,6 @@ a {
     color: #000;
 }
 
-.hero__name .stop {
-    color: rgba(255, 255, 255, 0.55);
-}
-
 .hero__bottom {
     max-width: 520px;
 }
@@ -204,21 +200,6 @@ a {
     margin-bottom: 20px;
 }
 
-.projects-intro {
-    padding: clamp(28px, 5vh, 56px) var(--pad-x);
-    border-top: 1px solid var(--rule);
-    background: var(--bg);
-}
-
-.projects-intro__label {
-    font-size: clamp(18px, 2.2vw, 28px);
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--fg);
-    text-align: center;
-}
-
 .section {
     position: relative;
     min-height: 82vh;
@@ -226,31 +207,6 @@ a {
     overflow: hidden;
     isolation: isolate;
     border-top: 1px solid var(--rule);
-}
-
-.section__index {
-    position: absolute;
-    top: 32px;
-    left: var(--pad-x);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #fff;
-    z-index: 3;
-    mix-blend-mode: difference;
-    pointer-events: none;
-}
-
-.section__index b {
-    font-weight: 500;
-    margin-right: 20px;
-}
-
-.section--right .section__index {
-    left: auto;
-    right: var(--pad-x);
-    text-align: right;
 }
 
 .text-block {
