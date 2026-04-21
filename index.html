@@ -325,7 +325,7 @@
     position: absolute;
     left: 50%;
     top: 60%;
-    width: 10%;
+    height: 20%;
     aspect-ratio: 1 / 1;
     transform: translate(-50%, -50%);
     object-fit: cover;
@@ -736,7 +736,7 @@ class LiquidBand {
     gl.useProgram(this.program);
     gl.bindVertexArray(this.vao);
 
-    const obstacleSize = w * 0.10;
+    const obstacleSize = h * 0.20; // icon height
     const obstacleRadius = obstacleSize * 0.20;
     const obstacleInfluence = obstacleSize * 1.7;
 
