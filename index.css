@@ -348,10 +348,19 @@ a {
     transform: translate(-50%, -50%);
     object-fit: cover;
     border-radius: 20%;
-    pointer-events: none;
+    pointer-events: all;
     box-shadow:
         0 14px 40px rgba(0, 0, 0, 0.32),
         0 0 0 1px rgba(255, 255, 255, 0.12);
+    transition: all 0.15s ease-out;
+}
+
+.band-icon:hover {
+    height: 22%;
+    box-shadow:
+        0 0px 30px rgba(0, 0, 0, 0.50),
+        0 0px 40px rgba(0, 0, 0, 0.70);
+    transition: all 0.15s ease-out;
 }
 
 .band-clip .text-block {
