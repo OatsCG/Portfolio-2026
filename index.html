@@ -267,7 +267,7 @@
 
   .text-block__content--align-end .text-block__sub {
     text-align: right;
-    max-width: 30ch;
+    /* max-width: 30ch; */
   }
 
   .text-block__title {
@@ -324,7 +324,7 @@
   .band-icon {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 60%;
     width: 10%;
     aspect-ratio: 1 / 1;
     transform: translate(-50%, -50%);
@@ -485,9 +485,8 @@
       <div class="band-media">
         <canvas class="band-canvas"
                 data-liquid
-                data-mode="plain"
                 data-colors="#ed3ea1,#ef0fca,#6c0ed2,#2b0554"></canvas>
-        <!-- <img class="band-icon" src="assets/openmusic_icon.webp" alt=""> -->
+        <img class="band-icon" src="assets/openmusic_icon.webp" alt="">
       </div>
       <div class="text-block">
         <div class="text-block__content text-block__content--align-end">
@@ -515,9 +514,8 @@
       <div class="band-media">
         <canvas class="band-canvas"
                 data-liquid
-                data-mode="plain"
                 data-colors="#ffffff,#d9ecff,#244b9a,#06152f"></canvas>
-        <!-- <img class="band-icon" src="assets/unisports_icon.webp" alt=""> -->
+        <img class="band-icon" src="assets/unisports_icon.webp" alt="">
       </div>
       <div class="text-block">
         <div class="text-block__content">
@@ -545,9 +543,8 @@
       <div class="band-media">
         <canvas class="band-canvas"
                 data-liquid
-                data-mode="plain"
-                data-colors="#bdf8ff,#37d7ff,#1580ff,#0637b8"></canvas>
-        <!-- <img class="band-icon" src="assets/carpass_icon.webp" alt=""> -->
+                data-colors="#bdf8ff,#37d7ff,#1580ff,#6857d9"></canvas>
+        <img class="band-icon" src="assets/carpass_icon.webp" alt="">
       </div>
       <div class="text-block">
         <div class="text-block__content text-block__content--align-end">
@@ -573,7 +570,7 @@
 <script>
 (function () {
   const speed = 0.22;
-  const APP_BOTTOM_EDGE = 65;
+  const APP_BOTTOM_EDGE = 85;
   const APP_TOP_A_LEFT = 24;
   const APP_TOP_A_RIGHT = 12;
   const APP_TOP_B_LEFT = 12;
@@ -739,13 +736,13 @@ class LiquidBand {
     gl.useProgram(this.program);
     gl.bindVertexArray(this.vao);
 
-    const obstacleSize = minDim * 0.10;
+    const obstacleSize = w * 0.10;
     const obstacleRadius = obstacleSize * 0.20;
     const obstacleInfluence = obstacleSize * 1.7;
 
     gl.uniform1f(this.uTime, timeMs * this.timeScale);
     gl.uniform2f(this.uResolution, w, h);
-    gl.uniform2f(this.uObstacleCenter, w * 0.5, h * 0.5);
+    gl.uniform2f(this.uObstacleCenter, w * 0.5, h * 0.4);
     gl.uniform1f(this.uObstacleSize, obstacleSize);
     gl.uniform1f(this.uObstacleRadius, obstacleRadius);
     gl.uniform1f(this.uObstacleInfluence, obstacleInfluence);
