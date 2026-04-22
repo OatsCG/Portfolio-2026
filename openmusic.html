@@ -295,22 +295,17 @@
         <h2 class="case-section__title">Aggregating Music and the OMDB</h2>
         <div class="case-section__text">
           <p>
-            The idea of scraping YouTube Music came while I was stacking apples at my summer produce job at Sobeys.
-            I figured it's possible to scrape millions of albums within a week, so I spent my days at Sobeys conceptualizing the script.
+            A python script scrapes YouTube Music, and aggregates as the Openmusic Database (OMDB) which the app serves.
           </p>
           <p>
-            The 1st innovation was using 2 runs of searching albums on YouTube Music.
-            The first run uses a list of existing search terms, and the 2nd run uses the albums gathered from the 1st run as search terms.
-            This maximized album count.
+            A number of innovations make this possible, including combining releases (the "Other Versions" section on YouTube Music) into a single album,
+            and merging identical tracks with separate clean/explicit "playbacks".
             <br>
-            The 2nd innovation was combining releases (the "Other Versions" section on YouTube Music) into a single album.
-            Identical tracks are merged, with separate clean/explicit "playbacks".
-            <br>
-            The 3rd innovation was modifying the album's URL to a regular YouTube URL, exposing the raw audios instead of music videos.
-            This is what many "free music" apps get wrong, is playing the music videos instead of the song.
+            Another innovation is modifying the album's URL to a regular YouTube URL, exposing the raw audios instead of music videos.
+            This is what many "free music" apps get wrong; playing the music videos instead of the song.
           </p>
           <p>
-            The script runs in 4 days. The database is published publicly as the OMDB (Openmusic Database), making it the largest public music database (4x larger than its competition, MusicBrainz).
+            The script runs in 4 days. The database is published publicly as the OMDB, making it the largest public music database (4x larger than its competition, MusicBrainz).
           </p>
         </div>
       </div>
@@ -338,9 +333,6 @@
             Such a task is difficult when the goal is a streamlined user experience,
             but my skills and experience allowed me to execute bold looks without impeding the experience.
           </p>
-          <p>
-            Animations, familiarity, 
-          </p>
         </div>
       </div>
 
@@ -356,14 +348,17 @@
 
       <div class="case-section__body">
         <p class="case-section__kicker">04</p>
-        <h2 class="case-section__title">The AudioManager</h2>
+        <h2 class="case-section__title">The PlayerManager</h2>
         <div class="case-section__text">
           <p>
-            Use this section for the technical side of the project. Mention architecture, platform choices, APIs,
-            tricky implementation details, or any engineering work that made the product feel polished.
+            A master PlayerManager class manages queuing and priming songs.
+            The PlayerManager automatically prepares songs for playback, initializes the EQ, and times
+            crossfading for local and remote files.
           </p>
           <p>
-            Keep the tone accessible. The page should still read clearly even for someone who is not deeply technical.
+            The PlayerManager also manages subclasses for additional features, including FetchSuggestionsModel (AI-suggested queuing),
+            NotificationManager (player toasts), and ProximityManager (Controls via the True-Depth sensor).
+
           </p>
         </div>
       </div>
@@ -383,11 +378,11 @@
         <h2 class="case-section__title">Spotify/Apple Music Integration and AI</h2>
         <div class="case-section__text">
           <p>
-            Use this section for the technical side of the project. Mention architecture, platform choices, APIs,
-            tricky implementation details, or any engineering work that made the product feel polished.
+            The Spotify API is used for importing playlists, converting songs to Openmusic files.
+            It's also used for fetching music suggestions, and Vibes. Vibes support music suggestions by providing attributes like energy, acousticness, etc.
           </p>
           <p>
-            Keep the tone accessible. The page should still read clearly even for someone who is not deeply technical.
+            The Apple Music API is used for importing playlists, and fetching animated album arts.
           </p>
         </div>
       </div>
@@ -407,11 +402,12 @@
         <h2 class="case-section__title">Additional Features and Challenges</h2>
         <div class="case-section__text">
           <p>
-            Close with a brief summary of what the project became, what you learned, or what you would refine next.
-            Since the page is meant to stay minimal, a concise ending usually works better than a long conclusion.
+            Openmusic lets you control music by waving your hand in Car Mode, or skipping with the volume buttons.
+            Car Mode uses the TrueDepth sensor's depth buffer to read 'wave' (skip) and 'hover' (play/pause) gestures in real time.
+            Volume buttons are hooked to enable 'Volume Skip' controls, letting you skip songs from your pocket even when your phone is off.
           </p>
           <p>
-            You can also use this final section to set up the links below.
+            Swift Testing and GitHub issue tracking helped manage these features, resulting in consistently bug-free feature updates.
           </p>
         </div>
       </div>
