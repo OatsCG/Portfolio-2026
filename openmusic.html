@@ -355,7 +355,7 @@
 
     <section class="case-section">
       <div class="case-section__media">
-        <img src="assets/openmusic/player.PNG" />
+        <img src="assets/openmusic/queue.png" />
       </div>
 
       <div class="case-section__body">
@@ -368,59 +368,32 @@
             crossfading for local and remote files.
           </p>
           <p>
-            The PlayerManager also manages subclasses for additional features, including FetchSuggestionsModel
-            (AI-suggested queuing),
-            NotificationManager (player toasts), and ProximityManager (Controls via the True-Depth sensor).
-
+            The PlayerManager also manages subclasses for additional features, including the FetchSuggestionsModel
+            for AI-suggested queuing. The Spotify and Apple Music APIs fetch music suggestions, which are converted to Openmusic files.
+            User-selected Vibes support music suggestions by providing attributes like energy, acousticness, etc.
           </p>
         </div>
       </div>
 
       <div class="case-section__media case-section__media--right">
-        <img src="assets/openmusic/eq.PNG" />
+        <img src="assets/openmusic/eq.png" />
       </div>
     </section>
 
     <section class="case-section">
       <div class="case-section__media">
-        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+        <img src="assets/openmusic/player.png" />
       </div>
 
       <div class="case-section__body">
         <p class="case-section__kicker">05</p>
-        <h2 class="case-section__title">Spotify/Apple Music Integration and AI</h2>
-        <div class="case-section__text">
-          <p>
-            The Spotify API is used for importing playlists, converting songs to Openmusic files.
-            It's also used for fetching music suggestions, and Vibes. Vibes support music suggestions by providing
-            attributes like energy, acousticness, etc.
-          </p>
-          <p>
-            The Apple Music API is used for importing playlists, and fetching animated album arts.
-          </p>
-        </div>
-      </div>
-
-      <div class="case-section__media case-section__media--right">
-        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
-      </div>
-    </section>
-
-    <section class="case-section">
-      <div class="case-section__media">
-        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
-      </div>
-
-      <div class="case-section__body">
-        <p class="case-section__kicker">06</p>
         <h2 class="case-section__title">Additional Features and Challenges</h2>
         <div class="case-section__text">
           <p>
-            Openmusic lets you control music by waving your hand in Car Mode, or skipping with the volume buttons.
-            Car Mode uses the TrueDepth sensor's depth buffer to read 'wave' (skip) and 'hover' (play/pause) gestures in
-            real time.
-            Volume buttons are hooked to enable 'Volume Skip' controls, letting you skip songs from your pocket even
-            when your phone is off.
+            Openmusic lets you import/convert playlists from Spotify or Apple Music.
+            You can also control music by waving your hand in Car Mode, or skipping with the volume buttons.
+            Car Mode uses the TrueDepth sensor's depth buffer to read gestures in real time.
+            Volume buttons are hooked to enable 'Volume Skip' controls, letting you skip songs from your pocket even when your phone is off.
           </p>
           <p>
             Swift Testing and GitHub issue tracking helped manage these features, resulting in consistently bug-free
@@ -430,7 +403,7 @@
       </div>
 
       <div class="case-section__media case-section__media--right">
-        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+        <img src="assets/openmusic/github.png" />
       </div>
     </section>
   </main>
@@ -441,18 +414,18 @@
       <p class="case-links__label">Project links</p>
 
       <div class="case-links__grid">
-        <a class="case-link" href="https://apps.apple.com/ca/app/openmusic/id6474526827">
-          <img src="assets/appstore.png" alt="">
+        <a class="case-link" href="https://apps.apple.com/ca/app/openmusic/id6474526827" target="_blank">
+          <img src="assets/appstore.png" alt="App Store">
           <span>Get Openmusic</span>
         </a>
 
-        <a class="case-link" href="#">
-          <img src="assets/github.png" alt="https://github.com/OatsCG/Openmusic">
+        <a class="case-link" href="https://github.com/OatsCG/Openmusic" target="_blank">
+          <img src="assets/github.png" alt="GitHub">
           <span>Open-Source Repository</span>
         </a>
 
-        <a class="case-link" href="#">
-          <img src="assets/github.png" alt="https://github.com/OatsCG/Openmusic-Server-Specs">
+        <a class="case-link" href="https://github.com/OatsCG/Openmusic-Server-Specs" target="_blank">
+          <img src="assets/github.png" alt="GitHub">
           <span>Openmusic Server Specs</span>
         </a>
       </div>
@@ -463,7 +436,7 @@
     <div class="footer__inner">
       <div class="footer__contact">
         <span>charlie.giannis@mail.utoronto.ca</span>
-        <span>linkedin.com/in/charlie-giannis</span>
+        <a target="_blank" href="https://linkedin.com/in/charlie-giannis">linkedin.com/in/charlie-giannis</span>
       </div>
       <div class="footer__location">
         <span>With love from Toronto 🇨🇦</span>
@@ -482,7 +455,7 @@
       const body = section.querySelector('.case-section__body');
       if (!body) return;
 
-      const bodyHeight = body.offsetHeight;
+      const bodyHeight = body.offsetHeight * 1.2;
       section.style.setProperty('--section-body-height', `${bodyHeight}px`);
     });
   }
