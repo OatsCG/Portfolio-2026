@@ -95,6 +95,10 @@
       gap: 18px;
     }
 
+    .case-section__media img {
+      max-width: 100%;
+    }
+
     .case-section__media--right {
       justify-items: end;
     }
@@ -258,7 +262,7 @@
   <main class="case-content">
     <section class="case-section">
       <div class="case-section__media">
-        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+        <img src="assets/openmusic/twophones.webp" />
       </div>
 
       <div class="case-section__body">
@@ -266,24 +270,24 @@
         <h2 class="case-section__title">What is Openmusic?</h2>
         <div class="case-section__text">
           <p>
-            Add a straightforward description of the app here. Explain the core purpose, the type of user it serves,
-            and what made the project worth building. Keep it practical and direct.
+            Openmusic lets you stream music from custom, community-made servers.
+            This includes my own public server which serves 160+ million songs, the largest database of its kind.
           </p>
           <p>
-            This section works well for a short origin story, product framing, or a brief explanation of the feature
-            set that matters most to the rest of the case study.
+            The app is built in SwiftUI, and includes a suite of features comparable to bigger platforms, incluing
+            AI-suggested queuing, multiple UI themes, importing playlists from other platforms, and skipping songs with the wave of your hand.
           </p>
         </div>
       </div>
 
       <div class="case-section__media case-section__media--right">
-        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+        <img src="assets/openmusic/home.webp" />
       </div>
     </section>
 
     <section class="case-section">
       <div class="case-section__media">
-        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+        
       </div>
 
       <div class="case-section__body">
@@ -291,24 +295,34 @@
         <h2 class="case-section__title">Aggregating Music and the OMDB</h2>
         <div class="case-section__text">
           <p>
-            Describe the specific problem, friction point, or gap this product addresses. Focus on the real user need
-            or workflow issue rather than broad claims.
+            The idea of scraping YouTube Music came while I was stacking apples at my summer produce job at Sobeys.
+            I figured it's possible to scrape millions of albums within a week, so I spent my days at Sobeys conceptualizing the script.
           </p>
           <p>
-            You can also use this area to explain any constraints that shaped the project, such as time, platform,
-            technical limitations, or audience expectations.
+            The 1st innovation was using 2 runs of searching albums on YouTube Music.
+            The first run uses a list of existing search terms, and the 2nd run uses the albums gathered from the 1st run as search terms.
+            This maximized album count.
+            <br>
+            The 2nd innovation was combining releases (the "Other Versions" section on YouTube Music) into a single album.
+            Identical tracks are merged, with separate clean/explicit "playbacks".
+            <br>
+            The 3rd innovation was modifying the album's URL to a regular YouTube URL, exposing the raw audios instead of music videos.
+            This is what many "free music" apps get wrong, is playing the music videos instead of the song.
+          </p>
+          <p>
+            The script runs in 4 days. The database is published publicly as the OMDB (Openmusic Database), making it the largest public music database (4x larger than its competition, MusicBrainz).
           </p>
         </div>
       </div>
 
       <div class="case-section__media case-section__media--right">
-        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+        <img src="assets/openmusic/OMDB.webp" />
       </div>
     </section>
 
     <section class="case-section">
       <div class="case-section__media">
-        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+        <img src="assets/openmusic/wii.webp" />
       </div>
 
       <div class="case-section__body">
@@ -316,18 +330,22 @@
         <h2 class="case-section__title">Design and Themes</h2>
         <div class="case-section__text">
           <p>
-            Walk through the design decisions that shaped the app. This could include navigation structure, visual
-            hierarchy, motion, interaction details, or how you balanced clarity with personality.
+            SwiftUI makes it easy to iterate on designs, so Openmusic uses modular components in a ThemeManager providing 6 different themes.
+            These themes emulate the look and layout of popular apps, specific aestetics, and my personal favourite, the Nintendo Wii menu!
           </p>
           <p>
-            If useful, split this into a couple of paragraphs describing what changed over time and why the final
-            direction felt stronger than earlier ideas.
+            The themes were to test my own limits of creativity, and ability in copying designs.
+            Such a task is difficult when the goal is a streamlined user experience,
+            but my skills and experience allowed me to execute bold looks without impeding the experience.
+          </p>
+          <p>
+            Animations, familiarity, 
           </p>
         </div>
       </div>
 
       <div class="case-section__media case-section__media--right">
-        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+        <img src="assets/openmusic/fullscreen.webp" />
       </div>
     </section>
 
@@ -338,7 +356,7 @@
 
       <div class="case-section__body">
         <p class="case-section__kicker">04</p>
-        <h2 class="case-section__title">Implementation notes</h2>
+        <h2 class="case-section__title">The AudioManager</h2>
         <div class="case-section__text">
           <p>
             Use this section for the technical side of the project. Mention architecture, platform choices, APIs,
@@ -361,8 +379,32 @@
       </div>
 
       <div class="case-section__body">
-        <p class="case-section__kicker">05 / Wrap-up</p>
-        <h2 class="case-section__title">What to say at the end</h2>
+        <p class="case-section__kicker">05</p>
+        <h2 class="case-section__title">Spotify/Apple Music Integration and AI</h2>
+        <div class="case-section__text">
+          <p>
+            Use this section for the technical side of the project. Mention architecture, platform choices, APIs,
+            tricky implementation details, or any engineering work that made the product feel polished.
+          </p>
+          <p>
+            Keep the tone accessible. The page should still read clearly even for someone who is not deeply technical.
+          </p>
+        </div>
+      </div>
+
+      <div class="case-section__media case-section__media--right">
+        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="case-section__media">
+        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+      </div>
+
+      <div class="case-section__body">
+        <p class="case-section__kicker">06</p>
+        <h2 class="case-section__title">Additional Features and Challenges</h2>
         <div class="case-section__text">
           <p>
             Close with a brief summary of what the project became, what you learned, or what you would refine next.
@@ -386,24 +428,19 @@
     <p class="case-links__label">Project links</p>
 
     <div class="case-links__grid">
-      <a class="case-link" href="#">
-        <img src="assets/appstore.webp" alt="">
-        <span>App Store</span>
+      <a class="case-link" href="https://apps.apple.com/ca/app/openmusic/id6474526827">
+        <img src="assets/appstore.png" alt="">
+        <span>Get Openmusic</span>
       </a>
 
       <a class="case-link" href="#">
-        <img src="assets/github.webp" alt="">
-        <span>GitHub – iOS App</span>
+        <img src="assets/github.png" alt="https://github.com/OatsCG/Openmusic">
+        <span>Open-Source Repository</span>
       </a>
 
       <a class="case-link" href="#">
-        <img src="assets/github.webp" alt="">
-        <span>GitHub – Backend</span>
-      </a>
-
-      <a class="case-link" href="#">
-        <img src="assets/github.webp" alt="">
-        <span>GitHub – Website</span>
+        <img src="assets/github.png" alt="https://github.com/OatsCG/Openmusic-Server-Specs">
+        <span>Openmusic Server Specs</span>
       </a>
     </div>
   </div>
@@ -416,7 +453,7 @@
         <span>linkedin.com/in/charlie-giannis</span>
       </div>
       <div class="footer__location">
-        <span>Canada 🇨🇦</span>
+        <span>With love from Toronto 🇨🇦</span>
       </div>
     </div>
   </footer>
