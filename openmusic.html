@@ -93,10 +93,18 @@
     .case-section__media {
       display: grid;
       gap: 18px;
+      align-self: start;
     }
 
     .case-section__media img {
+      display: block;
       max-width: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+
+      /* JS will set this custom property per section */
+      max-height: var(--section-body-height, none);
     }
 
     .case-section__media--right {
@@ -139,7 +147,7 @@
       max-width: 62ch;
     }
 
-    .case-section__text p + p {
+    .case-section__text p+p {
       margin-top: 16px;
     }
 
@@ -195,6 +203,7 @@
     }
 
     @media (max-width: 980px) {
+
       .case-overview__grid,
       .case-section {
         grid-template-columns: 1fr;
@@ -205,9 +214,6 @@
         justify-items: start;
       }
 
-      .case-placeholder {
-        max-width: 100%;
-      }
     }
   </style>
 </head>
@@ -275,7 +281,8 @@
           </p>
           <p>
             The app is built in SwiftUI, and includes a suite of features comparable to bigger platforms, incluing
-            AI-suggested queuing, multiple UI themes, importing playlists from other platforms, and skipping songs with the wave of your hand.
+            AI-suggested queuing, multiple UI themes, importing playlists from other platforms, and skipping songs with
+            the wave of your hand.
           </p>
         </div>
       </div>
@@ -287,7 +294,7 @@
 
     <section class="case-section">
       <div class="case-section__media">
-        
+
       </div>
 
       <div class="case-section__body">
@@ -298,14 +305,17 @@
             A python script scrapes YouTube Music, and aggregates as the Openmusic Database (OMDB) which the app serves.
           </p>
           <p>
-            A number of innovations make this possible, including combining releases (the "Other Versions" section on YouTube Music) into a single album,
+            A number of innovations make this possible, including combining releases (the "Other Versions" section on
+            YouTube Music) into a single album,
             and merging identical tracks with separate clean/explicit "playbacks".
             <br>
-            Another innovation is modifying the album's URL to a regular YouTube URL, exposing the raw audios instead of music videos.
+            Another innovation is modifying the album's URL to a regular YouTube URL, exposing the raw audios instead of
+            music videos.
             This is what many "free music" apps get wrong; playing the music videos instead of the song.
           </p>
           <p>
-            The script runs in 4 days. The database is published publicly as the OMDB, making it the largest public music database (4x larger than its competition, MusicBrainz).
+            The script runs in 4 days. The database is published publicly as the OMDB, making it the largest public
+            music database (4x larger than its competition, MusicBrainz).
           </p>
         </div>
       </div>
@@ -325,8 +335,10 @@
         <h2 class="case-section__title">Design and Themes</h2>
         <div class="case-section__text">
           <p>
-            SwiftUI makes it easy to iterate on designs, so Openmusic uses modular components in a ThemeManager providing 6 different themes.
-            These themes emulate the look and layout of popular apps, specific aestetics, and my personal favourite, the Nintendo Wii menu!
+            SwiftUI makes it easy to iterate on designs, so Openmusic uses modular components in a ThemeManager
+            providing 6 different themes.
+            These themes emulate the look and layout of popular apps, specific aestetics, and my personal favourite, the
+            Nintendo Wii menu!
           </p>
           <p>
             The themes were to test my own limits of creativity, and ability in copying designs.
@@ -343,7 +355,7 @@
 
     <section class="case-section">
       <div class="case-section__media">
-        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+        <img src="assets/openmusic/player.PNG" />
       </div>
 
       <div class="case-section__body">
@@ -356,7 +368,8 @@
             crossfading for local and remote files.
           </p>
           <p>
-            The PlayerManager also manages subclasses for additional features, including FetchSuggestionsModel (AI-suggested queuing),
+            The PlayerManager also manages subclasses for additional features, including FetchSuggestionsModel
+            (AI-suggested queuing),
             NotificationManager (player toasts), and ProximityManager (Controls via the True-Depth sensor).
 
           </p>
@@ -364,7 +377,7 @@
       </div>
 
       <div class="case-section__media case-section__media--right">
-        <div class="case-placeholder" aria-label="Screenshot placeholder"></div>
+        <img src="assets/openmusic/eq.PNG" />
       </div>
     </section>
 
@@ -379,7 +392,8 @@
         <div class="case-section__text">
           <p>
             The Spotify API is used for importing playlists, converting songs to Openmusic files.
-            It's also used for fetching music suggestions, and Vibes. Vibes support music suggestions by providing attributes like energy, acousticness, etc.
+            It's also used for fetching music suggestions, and Vibes. Vibes support music suggestions by providing
+            attributes like energy, acousticness, etc.
           </p>
           <p>
             The Apple Music API is used for importing playlists, and fetching animated album arts.
@@ -403,11 +417,14 @@
         <div class="case-section__text">
           <p>
             Openmusic lets you control music by waving your hand in Car Mode, or skipping with the volume buttons.
-            Car Mode uses the TrueDepth sensor's depth buffer to read 'wave' (skip) and 'hover' (play/pause) gestures in real time.
-            Volume buttons are hooked to enable 'Volume Skip' controls, letting you skip songs from your pocket even when your phone is off.
+            Car Mode uses the TrueDepth sensor's depth buffer to read 'wave' (skip) and 'hover' (play/pause) gestures in
+            real time.
+            Volume buttons are hooked to enable 'Volume Skip' controls, letting you skip songs from your pocket even
+            when your phone is off.
           </p>
           <p>
-            Swift Testing and GitHub issue tracking helped manage these features, resulting in consistently bug-free feature updates.
+            Swift Testing and GitHub issue tracking helped manage these features, resulting in consistently bug-free
+            feature updates.
           </p>
         </div>
       </div>
@@ -420,27 +437,27 @@
 
   <section class="case-links" aria-label="Project links">
 
-  <div class="case-links__inner">
-    <p class="case-links__label">Project links</p>
+    <div class="case-links__inner">
+      <p class="case-links__label">Project links</p>
 
-    <div class="case-links__grid">
-      <a class="case-link" href="https://apps.apple.com/ca/app/openmusic/id6474526827">
-        <img src="assets/appstore.png" alt="">
-        <span>Get Openmusic</span>
-      </a>
+      <div class="case-links__grid">
+        <a class="case-link" href="https://apps.apple.com/ca/app/openmusic/id6474526827">
+          <img src="assets/appstore.png" alt="">
+          <span>Get Openmusic</span>
+        </a>
 
-      <a class="case-link" href="#">
-        <img src="assets/github.png" alt="https://github.com/OatsCG/Openmusic">
-        <span>Open-Source Repository</span>
-      </a>
+        <a class="case-link" href="#">
+          <img src="assets/github.png" alt="https://github.com/OatsCG/Openmusic">
+          <span>Open-Source Repository</span>
+        </a>
 
-      <a class="case-link" href="#">
-        <img src="assets/github.png" alt="https://github.com/OatsCG/Openmusic-Server-Specs">
-        <span>Openmusic Server Specs</span>
-      </a>
+        <a class="case-link" href="#">
+          <img src="assets/github.png" alt="https://github.com/OatsCG/Openmusic-Server-Specs">
+          <span>Openmusic Server Specs</span>
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <footer class="footer">
     <div class="footer__inner">
@@ -457,5 +474,27 @@
   <script src="band.js"></script>
   <script src="liquid.js"></script>
 </body>
+<script>
+  function syncCaseSectionImageHeights() {
+    const sections = document.querySelectorAll('.case-section');
+
+    sections.forEach(section => {
+      const body = section.querySelector('.case-section__body');
+      if (!body) return;
+
+      const bodyHeight = body.offsetHeight;
+      section.style.setProperty('--section-body-height', `${bodyHeight}px`);
+    });
+  }
+
+  window.addEventListener('load', syncCaseSectionImageHeights);
+  window.addEventListener('resize', syncCaseSectionImageHeights);
+
+  // Optional: re-run after fonts/images/layout shifts
+  if ('ResizeObserver' in window) {
+    const observer = new ResizeObserver(syncCaseSectionImageHeights);
+    document.querySelectorAll('.case-section__body').forEach(el => observer.observe(el));
+  }
+</script>
 
 </html>
