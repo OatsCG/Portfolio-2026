@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Openmusic Case Study - Charlie Giannis</title>
+  <title>Unisports Case Study - Charlie Giannis</title>
   <link rel="stylesheet" href="index.css">
   <style>
     :root {
@@ -231,27 +231,24 @@
   <main class="case-content">
     <section class="case-section">
       <div class="case-section__media">
-        <img src="assets/openmusic/twophones.webp" />
+        <img src="assets/unisports/screenshot_medals.png" />
       </div>
 
       <div class="case-section__body">
         <p class="case-section__kicker">01</p>
-        <h2 class="case-section__title">What is Openmusic?</h2>
+        <h2 class="case-section__title">What is UniSports?</h2>
         <div class="case-section__text">
           <p>
-            Openmusic lets you stream music from custom, community-made servers.
-            This includes my own public server which serves 160+ million songs, the largest database of its kind.
+            UniSports lets you find drop-in sports at 10+ universities across Ontario, and earn medals as you play.
           </p>
           <p>
-            The app is built in SwiftUI, and includes a suite of features comparable to bigger platforms, incluing
-            AI-suggested queuing, multiple UI themes, importing playlists from other platforms, and skipping songs with
-            the wave of your hand.
+            The app is built in SwiftUI, and features Siri shortcuts and widgets, notifications, and inclusivity filters.
           </p>
         </div>
       </div>
 
       <div class="case-section__media case-section__media--right">
-        <img src="assets/openmusic/home.webp" />
+        <img src="assets/unisports/screenshot_home_phonemockup.png" />
       </div>
     </section>
 
@@ -262,29 +259,16 @@
 
       <div class="case-section__body">
         <p class="case-section__kicker">02</p>
-        <h2 class="case-section__title">Aggregating Music and the OMDB</h2>
+        <h2 class="case-section__title">Aggregating Schedules</h2>
         <div class="case-section__text">
           <p>
             A python script scrapes YouTube Music, and aggregates as the Openmusic Database (OMDB) which the app serves.
-          </p>
-          <p>
-            A number of innovations make this possible, including combining releases (the "Other Versions" section on
-            YouTube Music) into a single album,
-            and merging identical tracks with separate clean/explicit "playbacks".
-            <br>
-            Another innovation is modifying the album's URL to a regular YouTube URL, exposing the raw audios instead of
-            music videos.
-            This is what many "free music" apps get wrong; playing the music videos instead of the song.
-          </p>
-          <p>
-            The script runs in 4 days. The database is published publicly as the OMDB, making it the largest public
-            music database (4x larger than its competition, MusicBrainz).
           </p>
         </div>
       </div>
 
       <div class="case-section__media case-section__media--right">
-        <img src="assets/openmusic/OMDB.webp" />
+        <img src="assets/unisports/utmsports_5.webp" />
       </div>
     </section>
 
@@ -295,35 +279,32 @@
 
       <div class="case-section__body">
         <p class="case-section__kicker">03</p>
-        <h2 class="case-section__title">Design and Themes</h2>
+        <h2 class="case-section__title">Design Language and Siri Interactions</h2>
         <div class="case-section__text">
           <p>
-            SwiftUI makes it easy to iterate on designs, so Openmusic uses modular components in a ThemeManager
-            providing 6 different themes.
-            These themes emulate the look and layout of popular apps, specific aestetics, and my personal favourite, the
-            Nintendo Wii menu!
+            The schedule is pre-indexed in Swift by title, description, and location.
+            
           </p>
           <p>
-            The themes were to test my own limits of creativity, and ability in copying designs.
-            Such a task is difficult when the goal is a streamlined user experience,
-            but my skills and experience allowed me to execute bold looks without impeding the experience.
+            App Intents drive Siri interactions with custom Shortcuts made in SwiftUI.
+            This enables homescreen widgets, and asking Siri for the date next session.
           </p>
         </div>
       </div>
 
       <div class="case-section__media case-section__media--right">
-        <img src="assets/openmusic/fullscreen.webp" />
+        <img src="assets/unisports/widget.png" />
       </div>
     </section>
 
     <section class="case-section">
       <div class="case-section__media">
-        <img src="assets/openmusic/queue.png" />
+        <img src="assets/unisports/screenshot_event.png" />
       </div>
 
       <div class="case-section__body">
         <p class="case-section__kicker">04</p>
-        <h2 class="case-section__title">The PlayerManager</h2>
+        <h2 class="case-section__title">BIPOC, LGBT+, and Women's Only Sports</h2>
         <div class="case-section__text">
           <p>
             A master PlayerManager class manages queuing and priming songs.
@@ -339,34 +320,7 @@
       </div>
 
       <div class="case-section__media case-section__media--right">
-        <img src="assets/openmusic/eq.png" />
-      </div>
-    </section>
-
-    <section class="case-section">
-      <div class="case-section__media">
-        <img src="assets/openmusic/player.png" />
-      </div>
-
-      <div class="case-section__body">
-        <p class="case-section__kicker">05</p>
-        <h2 class="case-section__title">Additional Features and Challenges</h2>
-        <div class="case-section__text">
-          <p>
-            Openmusic lets you import/convert playlists from Spotify or Apple Music.
-            You can also control music by waving your hand in Car Mode, or skipping with the volume buttons.
-            Car Mode uses the TrueDepth sensor's depth buffer to read gestures in real time.
-            Volume buttons are hooked to enable 'Volume Skip' controls, letting you skip songs from your pocket even when your phone is off.
-          </p>
-          <p>
-            Swift Testing and GitHub issue tracking helped manage these features, resulting in consistently bug-free
-            feature updates.
-          </p>
-        </div>
-      </div>
-
-      <div class="case-section__media case-section__media--right">
-        <img src="assets/openmusic/github.png" />
+        <img src="assets/unisports/utmsports_2.webp" />
       </div>
     </section>
   </main>
@@ -377,19 +331,19 @@
       <p class="case-links__label">Project links</p>
 
       <div class="case-links__grid">
-        <a class="case-link" href="https://apps.apple.com/ca/app/openmusic/id6474526827" target="_blank">
+        <a class="case-link" href="https://apps.apple.com/ca/app/unisports/id6670776453" target="_blank">
           <img src="assets/appstore.png" alt="App Store">
-          <span>Get Openmusic</span>
+          <span>Get UniSports</span>
         </a>
 
-        <a class="case-link" href="https://github.com/OatsCG/Openmusic" target="_blank">
-          <img src="assets/github.png" alt="GitHub">
-          <span>Open-Source Repository</span>
+        <a class="case-link" href="https://unisports.cgdev.ca/" target="_blank">
+          <img src="assets/globe.png" alt="Website">
+          <span>Promotional Website</span>
         </a>
 
-        <a class="case-link" href="https://github.com/OatsCG/Openmusic-Server-Specs" target="_blank">
+        <a class="case-link" href="https://github.com/OatsCG/UniSports-Catalog" target="_blank">
           <img src="assets/github.png" alt="GitHub">
-          <span>Openmusic Server Specs</span>
+          <span>Schedule Catalog</span>
         </a>
       </div>
     </div>
