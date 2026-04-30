@@ -239,10 +239,14 @@
         <h2 class="case-section__title">What is UniSports?</h2>
         <div class="case-section__text">
           <p>
-            UniSports lets you find drop-in sports at 10+ universities across Ontario, and earn medals as you play.
+            UniSports lets you explore drop-in sports at 10+ universities across Ontario, and earn medals as you play.
           </p>
           <p>
-            The app is built in SwiftUI, and features Siri shortcuts and widgets, notifications, and inclusivity filters.
+            The app is built in SwiftUI and features Siri shortcuts and widgets, notifications, inclusivity filters, and personalized stats.
+            The goal was to aggregate inaccessible sport schedules, and provide them to students in a faster and cleaner format.
+          </p>
+          <p>
+
           </p>
         </div>
       </div>
@@ -262,7 +266,13 @@
         <h2 class="case-section__title">Aggregating Schedules</h2>
         <div class="case-section__text">
           <p>
-            A python script scrapes YouTube Music, and aggregates as the Openmusic Database (OMDB) which the app serves.
+            Public schedules and announcements are webscraped daily from university websites.
+            They're converted to JSON with metadata for custom SF Symbols and sort categories.
+            The JSON is stored publicly on GitHub, with a version number used for caching.
+          </p>
+          <p>
+            The UniSports app checks the remote version number, and only updates its local schedule if needed.
+            This is done on launch, and through Background App Refresh in iOS.
           </p>
         </div>
       </div>
@@ -274,7 +284,7 @@
 
     <section class="case-section">
       <div class="case-section__media">
-        <img src="assets/openmusic/wii.webp" />
+        <img src="assets/unisports/screenshot_filters_phonemockup.png" />
       </div>
 
       <div class="case-section__body">
@@ -282,12 +292,13 @@
         <h2 class="case-section__title">Design Language and Siri Interactions</h2>
         <div class="case-section__text">
           <p>
-            The schedule is pre-indexed in Swift by title, description, and location.
-            
+            Filtering is done with chips, which are wrapped in a custom SwiftUI LayoutBuilder that fills any screen size horizontally.
+            The schedule scrolls infinitely with pagination using a LazyVStack, and a custom content provider that prevents visual bugs with LazyVStacks in ScrollViews on iOS.
+            Events are pre-indexed in Swift by title, description, and location.
           </p>
           <p>
             App Intents drive Siri interactions with custom Shortcuts made in SwiftUI.
-            This enables homescreen widgets, and asking Siri for the date next session.
+            This enables homescreen widgets, and asking Siri for the next session of your favourite sport.
           </p>
         </div>
       </div>
@@ -307,14 +318,13 @@
         <h2 class="case-section__title">BIPOC, LGBT+, and Women's Only Sports</h2>
         <div class="case-section__text">
           <p>
-            A master PlayerManager class manages queuing and priming songs.
-            The PlayerManager automatically prepares songs for playback, initializes the EQ, and times
-            crossfading for local and remote files.
+            As a member of the LGBT+ community, I know how important it is to have inclusion in sports.
+            UniSports promotes inclusive spaces to celebrate diversity, foster community, and provide safe spaces for students.
+            Users can filter for LGBT+, BIPOC, and Women’s Only sports sessions at their school using UniSports.
           </p>
           <p>
-            The PlayerManager also manages subclasses for additional features, including the FetchSuggestionsModel
-            for AI-suggested queuing. The Spotify and Apple Music APIs fetch music suggestions, which are converted to Openmusic files.
-            User-selected Vibes support music suggestions by providing attributes like energy, acousticness, etc.
+            These sessions are tagged automatically based on existing categories provided by the universities, as well as keyword matching.
+            Event content and tagging is heavily moderated to ensure correct information, and are constantly updated to match university guidelines and values.
           </p>
         </div>
       </div>
