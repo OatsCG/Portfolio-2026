@@ -34,11 +34,11 @@ class LiquidBand {
       this.gl.ARRAY_BUFFER,
       new Float32Array([
         -1, -1,
-         1, -1,
-        -1,  1,
-        -1,  1,
-         1, -1,
-         1,  1
+        1, -1,
+        -1, 1,
+        -1, 1,
+        1, -1,
+        1, 1
       ]),
       this.gl.STATIC_DRAW
     );
@@ -383,7 +383,9 @@ class LiquidBand {
     instances.forEach(instance => instance.resize());
   }
 
-  window.addEventListener('resize', resizeAll, { passive: true });
+  window.addEventListener('resize', resizeAll, {
+    passive: true
+  });
 
   if (reduceMotion) {
     instances.forEach(instance => instance.render(0));
