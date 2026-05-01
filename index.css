@@ -99,6 +99,30 @@ a {
     color: #ffffff;
 }
 
+.hero__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.hero__top span:first-child::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+    border-radius: 50%;
+    margin-right: 10px;
+    transform: translateY(-1px);
+}
+
 .hero__name {
     font-weight: 900;
     font-size: clamp(80px, 18vw, 320px);
