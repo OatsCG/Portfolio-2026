@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Charlie Giannis - Portfolio</title>
   <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="carousel.css" />
 </head>
 
 <body>
@@ -76,6 +77,27 @@
         <h2 class="about__lede">
           <em>Scroll to explore my projects</em>
         </h2>
+      </div>
+      <div class="about__carousel">
+        <div class="carousel-shell" id="carouselShell">
+          <div class="carousel" id="carousel">
+            <div class="carousel-track" id="carouselTrack">
+              <div class="carousel-entry" data-index="0">
+                <img class="carousel-image" src="assets/profile.jpeg" alt="Me and a horse" />
+                <div class="carousel-caption">Hi! In case you're confused, I'm the horse.</div>
+              </div>
+              <div class="carousel-entry" data-index="1">
+                <img class="carousel-image" src="https://picsum.photos/seed/three/540/960" alt="Graduation" />
+                <div class="carousel-caption">My graduation! Image yet to be taken.</div>
+              </div>
+              <div class="carousel-entry" data-index="2">
+                <img class="carousel-image" src="assets/IMG_4310.JPG" alt="MacBook and a fan" />
+                <div class="carousel-caption">The 2014 MacBook Air running all my servers, and its advanced cooling system.</div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-bars" id="carouselBars"></div>
+        </div>
       </div>
     </section>
   </div>
@@ -171,6 +193,12 @@
   <script src="band.js"></script>
 
   <script src="liquid.js"></script>
+
+  <script src="carousel.js"></script>
+
+  <script>
+    initCarousel('#carouselTrack', '#carouselBars', '#carouselShell');
+  </script>
 
 </body>
 

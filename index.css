@@ -171,6 +171,11 @@ a {
     position: relative;
     z-index: 1;
     padding: clamp(120px, 18vh, 200px) var(--pad-x);
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+    gap: clamp(40px, 7vw, 96px);
+    align-items: center;
 }
 
 .about__body {
@@ -396,5 +401,22 @@ a {
 
     html {
         scroll-behavior: auto;
+    }
+}
+
+.about__carousel {
+    width: 100%;
+    max-width: 420px;
+    justify-self: end;
+}
+
+@media (max-width: 840px) {
+    .about {
+        grid-template-columns: 1fr;
+    }
+
+    .about__carousel {
+        max-width: 100%;
+        justify-self: stretch;
     }
 }
