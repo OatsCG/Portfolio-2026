@@ -211,7 +211,6 @@ a {
     padding: clamp(44px, 7vh, 80px) var(--pad-x) clamp(56px, 8vh, 96px);
     overflow: hidden;
     isolation: isolate;
-    border-top: 1px solid var(--rule);
 }
 
 .text-block {
@@ -416,7 +415,6 @@ a {
     }
 
     .about__carousel {
-        max-width: 100%;
-        justify-self: stretch;
+        justify-self: center;
     }
 }
